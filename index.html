@@ -28,9 +28,11 @@
       header .date-pill{display:none}
       .toolbar{display:contents}
       .toolbar .seg{order:1;align-self:flex-start;margin:0 0 8px}
-      .calendar-scroll{order:2;max-height:72vh;overflow-x:auto;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y;scroll-snap-type:x mandatory;scroll-padding-left:49px}
+      .calendar-scroll{order:2;display:flex;align-items:flex-start;max-height:72vh;overflow-x:auto;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y;scroll-snap-type:x mandatory;scroll-padding-left:49px}
+      .calendar-scroll::after{content:"";display:block;flex:0 0 max(0px,calc(100vw - 283px));height:1px;pointer-events:none}
       .calendar{min-width:1320px;grid-template-columns:49px repeat(6,212px)}
       .day-head,.day-grid{display:block}
+      .day-head{scroll-snap-stop:always}
       .mobile-days{display:none}
       .mobile-meta{display:block;order:3;align-self:flex-start;margin:10px 0;padding:8px 11px;font-size:11px}
       .conflicts{order:4;margin:0 0 12px}
