@@ -53,7 +53,7 @@
 </head>
 <body>
 <div class="wrap">
-  <header><div><div class="eyebrow">Festival de Sitges · 2026</div><h1>Tu calendario de películas</h1><p class="intro">Todas las sesiones de tu lista entre el jueves 8 y el martes 13 por la tarde. Pulsa un bloque para ver detalles y elegir un pase.</p></div><div class="date-pill">8–13 OCT · 14 películas · 24 pases</div></header>
+  <header><div><div class="eyebrow">Festival de Sitges · 2026</div><h1>Tu calendario de películas</h1><p class="intro">Todas las sesiones de tu lista entre el jueves 8 y el martes 13 por la tarde. Pulsa un bloque para ver detalles y elegir un pase.</p></div><div class="date-pill">8–13 OCT · 19 películas · 34 pases</div></header>
   <div class="toolbar"><div class="seg" role="group" aria-label="Vista del calendario"><button id="all" class="active" type="button">Todas las sesiones</button><button id="mine" type="button">Mi selección</button></div><button id="reset" class="clear" type="button">Borrar selección</button><span class="summary" id="summary" aria-live="polite">0 películas elegidas</span></div>
   <div class="legend" id="legend"></div>
   <p class="notice"><strong>Cómo leer la madrugada:</strong> los pases después de medianoche se muestran al final de la columna de la noche anterior; por ejemplo, el del sábado 10 a la 01:00 aparece en la columna del viernes 9. Los horarios de fin se calculan con la duración anunciada de la <em>sesión</em>, que puede incluir más contenido que la película.</p>
@@ -61,7 +61,7 @@
   <div class="mobile-days" id="mobile-days" role="group" aria-label="Elegir día"></div>
   <div class="day-navigation" id="day-navigation" aria-label="Navegación diaria" hidden><button id="day-all" type="button">← Todos los días</button><button id="day-prev" type="button" aria-label="Día anterior">‹</button><span id="day-label"></span><button id="day-next" type="button" aria-label="Día siguiente">›</button></div>
   <div class="calendar-scroll" id="scroll" aria-label="Calendario de sesiones por día y hora"><div class="calendar" id="calendar"></div></div>
-  <div class="date-pill mobile-meta">8–13 OCT · 14 películas · 24 pases</div>
+  <div class="date-pill mobile-meta">8–13 OCT · 19 películas · 34 pases</div>
   <p class="footer">Sala y horarios: fichas oficiales del <a href="https://sitgesfilmfestival.com/en/edition/program" target="_blank" rel="noopener">Festival de Sitges</a>. La selección se guarda solo en este navegador. El martes 13, <em>Interior</em> termina aproximadamente a las 16:46; deja margen para llegar a tu tren de las 19:00. Las proyecciones pueden cambiar: revisa la ficha antes de comprar.</p>
 </div>
 <dialog id="details"><button class="close" id="close" aria-label="Cerrar">×</button><div class="eyebrow">Detalle de la sesión</div><h2 id="d-title"></h2><dl class="detail" id="d-info"></dl><div class="dialog-actions"><button class="primary" id="choose" type="button"></button><a class="secondary" id="official" target="_blank" rel="noopener">Ficha oficial ↗</a></div><div class="hint" id="d-hint"></div></dialog>
@@ -70,7 +70,7 @@
    day = fecha civil de octubre; afterMidnight = se dibuja en la noche anterior.
    runtime = duración total anunciada de la sesión, film = duración de la película. */
 const films={
-  ferine:{title:'Ferine',film:106,slug:'ferine'},ithaqua:{title:'Ithaqua',film:102,slug:'ithaqua'},leviticus:{title:'Leviticus',film:88,slug:'leviticus'},incomer:{title:'The Incomer',film:102,slug:'incomer'},family:{title:'Family Movie',film:81,slug:'family-movie'},ghost:{title:'Ghost in the Cell',film:106,slug:'ghost-cell'},sick:{title:'SICK',film:90,slug:'sick'},gummy:{title:'Gummy',film:82,slug:'gummy'},zi:{title:'zi',film:100,slug:'zi'},sender:{title:'Sender',film:94,slug:'sender'},imposters:{title:'Impostores',film:102,slug:'imposters'},interior:{title:'Interior',film:96,slug:'interior'},cycle:{title:'The Cycle',film:112,slug:'cycle'},fatherJoe:{title:'Father Joe',film:107,slug:'father-joe'}
+  ferine:{title:'Ferine',film:106,slug:'ferine'},ithaqua:{title:'Ithaqua',film:102,slug:'ithaqua'},leviticus:{title:'Leviticus',film:88,slug:'leviticus'},incomer:{title:'The Incomer',film:102,slug:'incomer'},family:{title:'Family Movie',film:81,slug:'family-movie'},ghost:{title:'Ghost in the Cell',film:106,slug:'ghost-cell'},sick:{title:'SICK',film:90,slug:'sick'},gummy:{title:'Gummy',film:82,slug:'gummy'},zi:{title:'zi',film:100,slug:'zi'},sender:{title:'Sender',film:94,slug:'sender'},imposters:{title:'Impostores',film:102,slug:'imposters'},interior:{title:'Interior',film:96,slug:'interior'},cycle:{title:'The Cycle',film:112,slug:'cycle'},fatherJoe:{title:'Father Joe',film:107,slug:'father-joe'},colony:{title:'Colony',film:123,slug:'colony'},familyNight:{title:'Familia teme enfrentar una nueva noche de terror',film:83,slug:'familia-teme-enfrentar-nueva-noche-terror'},ocean:{title:'Océano Titánico',film:132,slug:'oceano-titanico'},boiuna:{title:'Boiúna: La leyenda del Amazonas',film:104,slug:'beware-boiuna'},grind:{title:'Grind',film:105,slug:'grind'}
 };
 const venues={prado:{name:'Cinema Casino Prado',short:'Casino Prado',color:'#ffbb66',bg:'#885022'},escorxador:{name:'Cinema Escorxador',short:'Escorxador',color:'#a997ff',bg:'#594593'},auditori:{name:'Sala Auditori Meliá',short:'Auditori Meliá',color:'#68d9cf',bg:'#226e72'},tramuntana:{name:'Sala Tramuntana Meliá',short:'Tramuntana Meliá',color:'#ff819e',bg:'#89365a'}};
 const sessions=[
@@ -79,7 +79,13 @@ const sessions=[
   ['incomer',10,'08:15',102,'auditori'],['family',10,'08:15',81,'tramuntana'],['ghost',10,'14:35',106,'auditori'],['sick',10,'15:00',115,'tramuntana'],['family',10,'16:45',101,'auditori'],['gummy',10,'19:15',82,'tramuntana'],['zi',10,'21:15',100,'tramuntana'],['cycle',10,'01:00',298,'auditori','La nit del terror I · The Cycle + Half + Hallowarrior',true],
   ['sick',11,'19:00',95,'escorxador'],['sender',11,'19:30',99,'tramuntana'],['incomer',11,'23:00',107,'prado'],
   ['gummy',12,'01:00',175,'auditori','Gummy + El retorno de Júpiter',true],['ghost',12,'08:15',106,'prado'],['sender',12,'15:00',99,'escorxador'],['imposters',12,'17:30',107,'prado'],
-  ['interior',13,'14:45',121,'escorxador']
+  ['interior',13,'14:45',121,'escorxador'],
+  ['boiuna',8,'14:00',109,'auditori','Con invitados'],
+  ['ocean',10,'10:00',132,'tramuntana'],['ocean',11,'15:30',137,'auditori','Con invitados'],
+  ['boiuna',10,'08:15',104,'prado'],
+  ['colony',10,'12:30',123,'tramuntana'],['familyNight',10,'17:15',108,'tramuntana','Con invitados · coloquio'],['colony',10,'18:45',123,'auditori'],['colony',10,'22:45',123,'prado'],
+  ['familyNight',11,'21:00',88,'escorxador','Con invitados'],
+  ['grind',12,'22:00',130,'escorxador','Con invitados · coloquio']
 ].map(([film,day,time,runtime,venue,program,afterMidnight],i)=>({id:`${film}-${day}-${time.replace(':','')}`,film,day,time,runtime,venue,program,afterMidnight:Boolean(afterMidnight),index:i}));
 const days=[8,9,10,11,12,13],week=['Jueves','Viernes','Sábado','Domingo','Lunes','Martes'];
 const storageKey='sitges-2026-calendar-selection-v1';let chosen={};try{chosen=JSON.parse(localStorage.getItem(storageKey)||'{}')||{}}catch{}let mode='all';let current=null,mobileDay=8,focusedDay=null,allScrollLeft=0,allScrollTop=0;const mobile=window.matchMedia('(max-width:760px)');
